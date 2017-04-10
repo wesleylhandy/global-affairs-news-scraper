@@ -5,20 +5,20 @@
 
 	    <div class="card horizontal">
 		    
-	        <div class="card-content headline">
+	        <div class="card-content headline favorite-content">
 	          	<h4>{{title}}</h4>
 	          	<a href={{link}} target="_blank">{{link}}</a>
 	        </div>
-	        <div class="card-action">
+	        <div class="card-action card-stacked">
 	        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
 					<i class='fa {{#if this.favorited}}fa-heart{{else}}fa-heart-o{{/if}}' aria-hidden="true"></i>
 	        	</a>
-	        	<div class='card-stacked'>
-		          	<a data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-		          	<a data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-		        </div>
-		        <div class="chip">{{votes}}</div>
-		        <div class="chip">
+
+	          	<a data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+	          	<div class="chip vote-chip">{{votes}}</div>
+	          	<a data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+
+		        <div class="chip view-chip">
 		        	<a data-article-id="{{id}}" class='view-notes'>Notes&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 		        </div>
 	        </div>
@@ -50,7 +50,7 @@
 
 		<div id="note-cards"></div>
 
-		<h4>Add/Update Note</h4>
+		<h4>Add Note</h4>
 
 		<div class="row">
 		    <form class="col s12" id="new-note-form" data-article-id=''>
@@ -63,7 +63,7 @@
 		          		<textarea id="note-text" class="materialize-textarea"></textarea>
 		          		<label for="note-text">Content</label>
 		        	</div>
-		        	<a class="btn waves-effect waves-light" id='note-submit-btn' data-article-id=''>
+		        	<a class="btn waves-effect waves-light grey darken-4" id='note-submit-btn' data-article-id=''>
 		        		Submit&nbsp;<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					</a>
 		      	</div>
@@ -96,21 +96,21 @@
 				var card = $('<div>').addClass('col s12').attr('id', 'card' + note._id);
 				var horizontalCard = $('<div>').addClass('card horizontal').appendTo(card);
 
-				var contentWrapper = $('<div>').addClass('card-content').appendTo(horizontalCard);
+				var contentWrapper = $('<div>').addClass('card-content note-content').appendTo(horizontalCard);
 				var headlineText = $('<h4>').text(note.title).appendTo(contentWrapper);
 
 				var contentText = $('<div>').text(note.content).attr('id', 'content' + note._id).appendTo(contentWrapper).hide();
 				
 				var cardAction = $('<div>').addClass('card-action').appendTo(horizontalCard);
-				
+
 				var viewNote = $('<a>').addClass('view-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('View Note ').appendTo(cardAction);
 				var viewIcon = $('<i>').addClass('fa fa-eye').attr('aria-hidden', true).appendTo(viewNote);
 
 				var hideNote = $('<a>').addClass('hide-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
 				var hideIcon = $('<i>').addClass('fa fa-eye-slash').attr('aria-hidden', true).appendTo(hideNote);
 
-				var updateNote = $('<a>').addClass('update-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
-				var updateIcon = $('<i>').addClass('fa fa-eraser').attr('aria-hidden', true).appendTo(updateNote);
+				// var updateNote = $('<a>').addClass('update-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
+				// var updateIcon = $('<i>').addClass('fa fa-eraser').attr('aria-hidden', true).appendTo(updateNote);
 
 				var deleteNote = $('<a>').addClass('delete-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Delete ').appendTo(cardAction);
 				var deleteIcon = $('<i>').addClass('fa fa-times').attr('aria-hidden', true).appendTo(deleteNote);
@@ -201,14 +201,27 @@
 		$('.hide-note').hide();
 	});
 
-	$(document).on('click', '.update-note', function(){
+	// $(document).on('click', '.update-note', function(){
 
-		var $noteId = $(this).attr('data-note-id');
+	// 	var $noteId = $(this).attr('data-note-id');
 		
-		$('#content' + $noteId).hide();
-		$('.view-note').show();
-		$('.hide-note').hide();
-	});
+	// 	$('#note-title').val($('#card'+$noteId).find('h4').text());
+	// 	$('#note-text').val($('#content'+$noteId).text());
+
+	// 	$('.modal').animate({
+	//       scrollTop: $("#new-note-form").offset().top
+	//     },
+	//     'slow');
+
+	// 	$.post('/note/update/'+ $noteid + '?_method=PUT', {title, content}).done((res)=>{
+			
+
+	// 		$('#note-title').val('');
+	// 		$('#note-text').val('').trigger('autoresize');
+	// 		$('#notes-modal').modal('close');
+
+	// 	});
+	// });
 
 	$(document).on('click', '.delete-note', function(){
 

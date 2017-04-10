@@ -36,6 +36,24 @@ var ArticleSchema = new Schema({
 // Create the Article model with the ArticleSchema
 var Article = mongoose.model("Article", ArticleSchema);
 
+Article.removeOldArticles = function() {
+
+  return new Promise((resolve, reject)=>{
+
+    Article.deleteMany({
+      favorited: false
+    }, function(err) {
+      if (err) {
+        reject(err)
+      } else {
+        resolve('Success');
+      }
+    });
+
+  });
+
+}
+
 Article.upVote = function(id) {
   
   return new Promise((resolve, reject)=>{

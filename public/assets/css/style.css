@@ -22,32 +22,27 @@ body {
   background-color: rgba(158, 158, 158, 0.75);
 }
 
-#articles {
-  display: inline-block;
-  overflow: auto;
-  width: 60%;
-  height: 700px;
+.article-content, .favorite-content, .note-content {
+  width: 80%;
 }
 
-#notes {
+.card-stacked{
+  text-align: center;
   float: right;
-  width: 30%;
 }
 
-textarea, input {
-  display: block;
-  width: 100%;
-  background-color: #FCF5C7;
+.upvote, .downvote, .favorite {
+  margin-left: 1em;
 }
 
-input {
-  height: 36px;
-  font-size: 24px;
+.delete-chip, .view-chip {
+  text-align: center;
+  padding-right: 0;
 }
 
-textarea {
-  height: 200px;
-  font-size: 18px;
+.view-note, .hide-note, .delete-note {
+  float: right;
+
 }
 
 footer.page-footer {
