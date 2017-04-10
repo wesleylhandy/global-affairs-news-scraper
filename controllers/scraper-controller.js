@@ -37,7 +37,7 @@ module.exports = function(app) {
                     
                     $("h3.title-link__title").each(function(i, element) {
 
-                        counter++;
+                        
                         // Save an empty result object
                         var result = {};
 
@@ -50,13 +50,14 @@ module.exports = function(app) {
                         var entry = new Article(result);
 
                         // Now, save that entry to the db
-                        entry.save(function(err, doc) {
+                        entry.save({validateBeforeSave: true}, function(err, doc) {
                             // Log any errors
                             if (err) {
                                 console.log(err);
                             }
                             // Or log the doc
                             else {
+                                counter++;
                                 console.log(doc);
                             }
                         });
@@ -85,7 +86,6 @@ module.exports = function(app) {
                     // Now, we grab every h2 within an article tag, and do the following:
                     $(".top-feature-overlay-cont, .top-feature-sblock-wr, .topics-sec-item-cont").each(function(i, element) {
 
-                        counter++;
                         // Save an empty result object
                         var result = {};
 
@@ -98,13 +98,14 @@ module.exports = function(app) {
                         var entry = new Article(result);
 
                         // Now, save that entry to the db
-                        entry.save(function(err, doc) {
+                        entry.save({validateBeforeSave: true},function(err, doc) {
                             // Log any errors
                             if (err) {
                                 console.log(err);
                             }
                             // Or log the doc
                             else {
+                                counter++;
                                 console.log(doc);
                             }
                         });
@@ -133,7 +134,6 @@ module.exports = function(app) {
                     // Now, we grab every h2 within an article tag, and do the following:
                     $(".mb10").each(function(i, element) {
 
-                        counter++;
                         // Save an empty result object
                         var result = {};
 
@@ -146,13 +146,14 @@ module.exports = function(app) {
                         var entry = new Article(result);
 
                         // Now, save that entry to the db
-                        entry.save(function(err, doc) {
+                        entry.save({validateBeforeSave: true},function(err, doc) {
                             // Log any errors
                             if (err) {
                                 console.log(err);
                             }
                             // Or log the doc
                             else {
+                                counter++;
                                 console.log(doc);
                             }
                         });

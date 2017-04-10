@@ -143,7 +143,7 @@ Article.getFavorites = function() {
   return new Promise((resolve, reject)=>{
     Article.find({
       favorited: true
-    }, function(err, data){
+    }).sort({votes: -1}).exec(function(err, data){
       if(err) {
         console.log(err);
         reject(err);
