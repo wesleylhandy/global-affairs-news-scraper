@@ -24,13 +24,7 @@ module.exports = function(app, hbs) {
 
     // this will serve the main index.html
     router.get("/", function(req, res) {
-
-        Article.removeOldArticles().then((success)=>{
-            res.render('index');
-        }).catch((err)=>{
-            res.render('index');
-        });
-
+        res.render('index');
     });
 
     router.get("/articles", function(req, res){
