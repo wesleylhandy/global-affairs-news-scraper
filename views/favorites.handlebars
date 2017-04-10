@@ -1,4 +1,60 @@
 {{#each favorites}}
+<div class="col s12" id='card{{id}}'>
 
+    <div class="card horizontal">
+	    
+        <div class="card-content">
+          	<h4>{{title}}</h4>
+          	<a href={{link}} target="_blank">{{link}}</a>
+        </div>
+        <div class="card-action">
+        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
+				<i class='fa {{#if this.favorited}}fa-heart{{else}}fa-heart-o{{/if}}' aria-hidden="true"></i>
+        	</a>
+        	<div class='card-stacked'>
+	          	<a data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+	          	<a data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+	        </div>
+	        <div class="chip">{{votes}}</div>
+	        <div class="chip">
+	        	<a data-article-id="{{id}}" class='add-note'>Notes&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+	        </div>
+        </div>
+	    
+    </div>
+</div>
 
 {{/each}}
+
+<script type="text/javascript">
+
+	$(".favorite").click(function(){
+
+		$id = $(this).data('article-id');
+		
+		$.post("/article/unfavorite/" + $id + "?_method=PUT").done((done)=>{
+			$('#card'+$id).remove();
+		});
+	});
+
+	$(".upvote").click(function(){
+
+		$id = $(this).data('article-id');
+
+		$.post('/article/upvote/' + $id + '?_method=PUT').done((done)=>{
+				window.location.href = "/favorites";
+			});;
+
+	});
+
+	$(".downvote").click(function(){
+
+		$id = $(this).data('article-id');
+
+		$.post('/article/downvote/' + $id + '?_method=PUT').done((done)=>{
+				window.location.href = "/favorites";
+			});;
+
+	});
+
+</script>

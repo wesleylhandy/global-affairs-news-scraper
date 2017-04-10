@@ -11,7 +11,7 @@ function sendData(res, err, data) {
         console.log(err);
         res.json(err);
     } else {
-        res.send(data);
+        res.json(data);
     }
 }
 
@@ -40,7 +40,7 @@ module.exports = function(app) {
         newNote.save(function(error, note) {
             // Send any errors to the browser
             if (error) {
-                res.send(error);
+                res.json(error);
             }
             // Otherwise
             else {
@@ -72,5 +72,5 @@ module.exports = function(app) {
 
     });
         
-
+    app.use("/", router);
 }

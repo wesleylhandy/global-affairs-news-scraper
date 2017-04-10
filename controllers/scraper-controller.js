@@ -16,6 +16,8 @@ module.exports = function(app) {
     // A GET request to scrape three different world news websites
     router.get("/scrape", function(req, res) {
 
+        var counter = 0; //counter to track number of articles
+
         //create three promise-based functions to return website data
 
         //BBC World News
@@ -35,6 +37,7 @@ module.exports = function(app) {
                     
                     $("h3.title-link__title").each(function(i, element) {
 
+                        counter++;
                         // Save an empty result object
                         var result = {};
 
@@ -82,6 +85,7 @@ module.exports = function(app) {
                     // Now, we grab every h2 within an article tag, and do the following:
                     $(".top-feature-overlay-cont, .top-feature-sblock-wr, .topics-sec-item-cont").each(function(i, element) {
 
+                        counter++;
                         // Save an empty result object
                         var result = {};
 
@@ -129,6 +133,7 @@ module.exports = function(app) {
                     // Now, we grab every h2 within an article tag, and do the following:
                     $(".mb10").each(function(i, element) {
 
+                        counter++;
                         // Save an empty result object
                         var result = {};
 
@@ -169,15 +174,17 @@ module.exports = function(app) {
         Promise.all(promises).then((success)=>{
 
             // Tell the browser that we finished scraping the text
-            res.send(true);
+            res.json(counter);
 
         }).catch((err)=>{
 
             // Tell the browser scraping did not work
             if(err) {
                 console.log(err);
-                res.send(false);
+                res.json(false);
             }
         });
     });
+
+    app.use("/", router);
 }

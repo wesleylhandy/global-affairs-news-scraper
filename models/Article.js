@@ -18,7 +18,7 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  favorite: {
+  favorited: {
     type: Boolean,
     default: false
   },
@@ -33,14 +33,18 @@ var ArticleSchema = new Schema({
   }]
 });
 
-ArticleSchema.methods.upVote = function(id) {
+// Create the Article model with the ArticleSchema
+var Article = mongoose.model("Article", ArticleSchema);
+
+Article.upVote = function(id) {
   
   return new Promise((resolve, reject)=>{
-    this.findOneAndUpdate({
+    Article.findOneAndUpdate({
       _id: id
-    }, update: { 
+    }, { 
       $inc: { 
-        votes: 1 }
+        votes: 1 
+        }
       }, {
         new: true
       }, function(err, data) {
@@ -54,10 +58,10 @@ ArticleSchema.methods.upVote = function(id) {
   })
 }
 
-ArticleSchema.methods.downVote = function(id) {
+Article.downVote = function(id) {
     
   return new Promise((resolve, reject)=>{
-    this.findOneAndUpdate({
+    Article.findOneAndUpdate({
       _id: id
     }, { 
       $inc: { 
@@ -75,45 +79,51 @@ ArticleSchema.methods.downVote = function(id) {
   });
 }
 
-ArticleSchema.methods.favorite = function(id, res) {
-  this.findOneAndUpdate({
-    _id: id
-  }, { 
-    favorite: true
-  }, {
-    new: true
-  }, function(err, data) {
-    if (err){
-      console.log(err);
-      res.send(err);
-    } else {
-      res.send(data);
-    }
-  });
-}
-
-ArticleSchema.methods.unfavorite = function(id, res) {
-  this.findOneAndUpdate({
-    _id: id
-  }, { 
-    favorite: false
-  }, {
-    new: true
-  }, function(err, data) {
-    if (err){
-      console.log(err);
-      res.send(err);
-    } else {
-      res.send(data);
-    }
-  });
-}
-
-ArticleSchema.methods.getFavorites = function() {
+Article.favorite = function(id) {
 
   return new Promise((resolve, reject)=>{
-    this.find({
-      favorite: true
+    Article.findOneAndUpdate({
+      _id: id
+    }, { 
+      favorited: true
+    }, {
+      new: true
+    }, function(err, data) {
+      if (err){
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+}
+
+Article.unfavorite = function(id) {
+
+  return new Promise((resolve, reject)=>{
+    Article.findOneAndUpdate({
+      _id: id
+    }, { 
+      favorited: false
+    }, {
+      new: true
+    }, function(err, data) {
+      if (err){
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+}
+
+Article.getFavorites = function() {
+
+  return new Promise((resolve, reject)=>{
+    Article.find({
+      favorited: true
     }, function(err, data){
       if(err) {
         console.log(err);
@@ -125,8 +135,7 @@ ArticleSchema.methods.getFavorites = function() {
   });
 }
 
-// Create the Article model with the ArticleSchema
-var Article = mongoose.model("Article", ArticleSchema);
+
 
 // Export the model
 module.exports = Article;

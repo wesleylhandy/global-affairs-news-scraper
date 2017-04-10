@@ -11,7 +11,7 @@ function sendData(res, err, data) {
         console.log(err);
         res.json(err);
     } else {
-        res.send(data);
+        res.json(data);
     }
 }
 
@@ -34,7 +34,7 @@ module.exports = function(app, hbs) {
         //render a page with all the articles, sorted by votes
         Article.find({}).sort({votes: -1}).exec(function(err, articles) {
             if(err) {
-                res.json(err);
+                console.log(err);
             } else {
                 res.render('articles', {articles});
             }
@@ -58,7 +58,7 @@ module.exports = function(app, hbs) {
         Article.upVote(req.params.id).then((success)=>{
             res.redirect("/articles");
         }).catch((err)=>{
-            res.json(err);
+            console.log(err);
         });
 
     });
@@ -69,7 +69,7 @@ module.exports = function(app, hbs) {
         Article.downVote(req.params.id).then((success)=>{
             res.redirect("/articles");
         }).catch((err)=>{
-            res.json(err);
+            console.log(err);
         });
 
     });
@@ -77,28 +77,33 @@ module.exports = function(app, hbs) {
     //add article to favorites --browswer will handle updating view
     router.put("/article/favorite/:id", function(req, res){
 
-        Article.favorite(req.params.id, res);
+        Article.favorite(req.params.id).then((success)=>{
+            res.redirect("/articles");
+        }).catch((err)=>{
+            console.log(err);
+        });;
 
     });
 
     //remove article from favorites --browswer will handle updating view
     router.put('/article/unfavorite/:id', function(req, res){
 
-        Article.unfavorite(req.params.id, res);
+        Article.unfavorite(req.params.id).then((success)=>{
+            res.redirect("/articles");
+        }).catch((err)=>{
+            console.log(err);
+        });
 
     });
 
     //delete an article
     router.delete("/article/delete/:id", function(req, res){
 
-        Article.where({_id: req.params.id})
-            .findOneAndRemove({
-                new:true
-            }, function(err,data){
-                sendData(res, err, data);
-            }
+        Article.findOneAndRemove({
+            _id: req.params.id
+        }, function(err,data){
+            res.redirect("/articles");
         });
-
 
     });
         
