@@ -43,7 +43,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/scraps");
+mongoose.connect("mongodb://heroku_c5mv746k:5tvkkints4qgk3eqj0n3rkfi7u@ds157980.mlab.com:57980/heroku_c5mv746k");
 var db = mongoose.connection;
 
 // Show any mongoose errors
