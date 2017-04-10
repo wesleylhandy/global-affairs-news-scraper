@@ -1,0 +1,59 @@
+body { 
+  background-color: #F2F6D0 
+}
+
+#main-intro {
+  position: relative;
+}
+
+#main-title {
+
+  position: absolute;
+  top: 12.5%;
+  width: 60%;
+  margin-left: 20%;
+
+}
+
+#main-title-background {
+  padding: 50px;
+  border: 2px solid #9e9e9e;
+  border-radius: 50px;
+  background-color: rgba(158, 158, 158, 0.75);
+}
+
+#articles {
+  display: inline-block;
+  overflow: auto;
+  width: 60%;
+  height: 700px;
+}
+
+#notes {
+  float: right;
+  width: 30%;
+}
+
+textarea, input {
+  display: block;
+  width: 100%;
+  background-color: #FCF5C7;
+}
+
+input {
+  height: 36px;
+  font-size: 24px;
+}
+
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
+
+footer.page-footer {
+  margin-top: 0;
+}
+
+.col.s12 {
+  margin-bottom: 0;
+}

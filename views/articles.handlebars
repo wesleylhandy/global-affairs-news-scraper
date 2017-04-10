@@ -1,0 +1,44 @@
+{{#each articles}}
+
+<div class="col s12">
+
+    <div class="card horizontal">
+	    
+        <div class="card-content">
+          	<h1>{{title}}</h1>
+        </div>
+        <div class="card-action">
+        	<a data-article-id={{id}} class="favorite" data-favorite="{{favorited}}"><i class="fa fa-heart-o" aria-hidden="true"></a>
+        	<div class='card-stacked'>
+	          	<a  data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+	          	<a  data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+	        </div>
+	        <div class="chips">{{votes}}</div>
+        </div>
+	    
+    </div>
+</div>
+
+{{/each}}
+
+<script type="text/javascript">
+	
+//handle click events
+
+	$(".favorite").click(function(){
+
+		$id = $(this).data('article-id');
+	});
+
+	$(".upvote").click(function(){
+
+		$id = $(this).data('article-id');
+	});
+
+	$(".downvote").click(function(){
+
+		$id = $(this).data('article-id');
+	});
+
+
+</script>
