@@ -5,7 +5,7 @@
 
 	    <div class="card horizontal">
 		    
-	        <div class="card-content">
+	        <div class="card-content headline">
 	          	<h4>{{title}}</h4>
 	          	<a href={{link}} target="_blank">{{link}}</a>
 	        </div>
@@ -19,7 +19,7 @@
 		        </div>
 		        <div class="chip">{{votes}}</div>
 		        <div class="chip">
-		        	<a data-article-id="{{id}}" class='add-note'>Notes&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+		        	<a data-article-id="{{id}}" class='view-notes'>Notes&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 		        </div>
 	        </div>
 		    
@@ -44,9 +44,37 @@
 
 {{/if}}
 
-<div class="modal">
+<div class="modal" id="notes-modal">
 
-	{{>notes}}
+	<div class="modal-content">
+
+		{{!-- {{>notes}} --}}
+
+		<h4>Add New Notes</h4>
+
+		<div class="row">
+		    <form class="col s12" id="new-note-form" data-article-id=''>
+		      	<div class="row">
+			      	<div class="input-field col s12">
+			          	<input placeholder="Title" id="note-title" type="text" class="validate">
+			          	<label for="note-title">Title</label>
+			        </div>
+		        	<div class="input-field col s12">
+		          		<textarea id="note-text" class="materialize-textarea"></textarea>
+		          		<label for="note-text">Content</label>
+		        	</div>
+		        	<a class="btn waves-effect waves-light" id='note-submit-btn' data-article-id=''>
+		        		Submit&nbsp;<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					</a>
+		      	</div>
+		    </form>
+		</div>
+
+	</div>
+
+	<div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Close&nbsp;<i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+    </div>
 
 </div>
 
@@ -54,7 +82,7 @@
 
 	$(".favorite").click(function(){
 
-		$id = $(this).data('article-id');
+		var $id = $(this).data('article-id');
 		
 		$.post("/article/unfavorite/" + $id + "?_method=PUT").done((done)=>{
 			$('#card'+$id).remove();
@@ -63,7 +91,7 @@
 
 	$(".upvote").click(function(){
 
-		$id = $(this).data('article-id');
+		var $id = $(this).data('article-id');
 
 		$.post('/article/upvote/' + $id + '?_method=PUT').done((done)=>{
 				window.location.href = "/favorites";
@@ -73,12 +101,40 @@
 
 	$(".downvote").click(function(){
 
-		$id = $(this).data('article-id');
+		var $id = $(this).data('article-id');
 
 		$.post('/article/downvote/' + $id + '?_method=PUT').done((done)=>{
 				window.location.href = "/favorites";
 			});;
 
 	});
+
+	$('.view-notes').click(function(){
+
+		var $id = $(this).data('article-id');
+
+		$('#new-note-form, #note-submit-btn').data('article-id', $id);
+
+		$.get('/notes/'+$id).done((notes)=>{
+			console.log(notes);
+			$('#notes-modal').modal('open');
+		});
+	});
+
+	$('#note-submit-btn').click(function(){
+
+		var $id = $(this).data('article-id');
+		var title = $('#note-title').val();
+		var content = $('#note-text').val();
+
+		$.post('/note/add/'+id, {title, content}).done((res)=>{
+			console.log(res);
+
+			$('#note-title').empty();
+			$('#note-text').empty().trigger('autoresize');
+
+		});
+
+	})
 
 </script>

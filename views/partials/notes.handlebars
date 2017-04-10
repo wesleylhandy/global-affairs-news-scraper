@@ -1,0 +1,25 @@
+{{#if notes}}
+
+	{{#each notes}}
+	<div class="col s12" id='card{{id}}'>
+
+	    <div class="card horizontal">
+		    
+	        <div class="card-content headline">
+	          	<h4>{{title}}</h4>
+	        </div>
+	        <div class="card-action">
+	        	<a data-article-id={{id}} class="view-note">View Note&nbsp;
+					<i class="fa fa-eye" aria-hidden="true"></i>
+	        	</a>
+		        <div class="chip">
+		        	<a data-article-id="{{id}}" class='delete-note'><i class="fa fa-times" aria-hidden="true"></i></a>
+		        </div>
+	        </div>
+		    
+	    </div>
+	</div>
+
+	{{/each}}
+
+{{/if}}
