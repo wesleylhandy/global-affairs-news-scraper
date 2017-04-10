@@ -62,13 +62,37 @@ module.exports = function(app) {
 
     });
 
+    //get and display content of a single note
+    router.get("/note/:id", function(req, res){
+
+
+    });
+
     //update title and content of note on a given article
     router.put("/note/update/:id", function(req, res){
 
     });
 
     //delete a given note
-    router.delete("/note/delete/:id", function(req, res){
+    router.delete("/note/delete/:articleid/:noteid", function(req, res){
+
+        Article.update({
+            _id: req.params.articleid
+        }, {
+            $pull: {
+                notes: {
+                    $oid: req.params.noteid
+                }
+            }
+        }, {
+            safe: true
+        }, function(err, obj) {
+            Note.findOneAndRemove({
+                _id: req.params.noteid
+            }, function(err,data){
+                sendData(res, err, data);
+            });
+        });
 
     });
         
