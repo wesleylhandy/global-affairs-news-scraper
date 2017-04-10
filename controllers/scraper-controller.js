@@ -43,7 +43,7 @@ module.exports = function(app) {
 
                         // Add the text and href of every link, and save them as properties of the result object
                         result.title = $(this).find(".title-link__title-text").text();
-                        result.link = "http://www.bbc.com/news/world" + $(this).children("a").attr("href");
+                        result.link = "http://www.bbc.com/news/world" + $(this).parent("a").attr("href");
 
                         // Using our Article model, create a new entry
                         // This effectively passes the result object to the entry (and the title and link)
