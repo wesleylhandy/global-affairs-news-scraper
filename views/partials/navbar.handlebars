@@ -21,7 +21,9 @@
 					window.location.href = "/articles";
 				});
 			} else {
-				Materialize.toast(`An error occured.`, 3000);
+				Materialize.toast(`No New Articles to Scrape`, 3000, 'rounded', function(){
+					window.location.href = "/articles";
+				});
 			}
 		})
 
