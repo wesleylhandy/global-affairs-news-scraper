@@ -3,7 +3,7 @@
 	{{#each favorites}}
 	<div class="col s12" id='card{{id}}'>
 
-	    <div class="card horizontal grey lighten-5">
+	    <div class="card horizontal grey lighten-5 hoverable">
 		    
 	        <div class="card-content favorite-content">
 	          	
@@ -95,7 +95,7 @@
 			$notes.forEach((note)=>{
 
 				var card = $('<div>').addClass('col s12').attr('id', 'card' + note._id);
-				var horizontalCard = $('<div>').addClass('card horizontal').appendTo(card);
+				var horizontalCard = $('<div>').addClass('card horizontal hoverable').appendTo(card);
 
 				var contentWrapper = $('<div>').addClass('card-content note-content').appendTo(horizontalCard);
 				var headlineText = $('<h4>').text(note.title).appendTo(contentWrapper);

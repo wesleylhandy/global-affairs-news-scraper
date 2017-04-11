@@ -18,7 +18,7 @@ News aggregator that allows users to comment and vote up/down headlines, using n
 
 * Create a user model, and utilize some sort of user authentication alongside `Passport.js`, to make favorites, notes and articles personalized. Currently, any and every user can make simultaneous changes to the DB which can easily lead to race conditions. As such, this app is in the very early stages of development.
 
-* Develop an algorithm for continually adding to the DB of articles being scraped that will not add duplicates, and that will allow the persistance and usefulness of the up/down vote feature.
+* ~~Develop an algorithm for continually adding to the DB of articles being scraped that will not add duplicates, and that will allow the persistance and usefulness of the up/down vote feature.~~ DONE!
 
 * Implement the ability to update one's notes on a given article.
 
