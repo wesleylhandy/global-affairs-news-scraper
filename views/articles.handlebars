@@ -3,22 +3,24 @@
 
 	<div class="col s12" id='card{{id}}'>
 
-	    <div class="card horizontal">
+	    <div class="card horizontal grey lighten-5">
 		    
-	        <div class="card-content headline article-content">
-	          	<h4>{{title}}</h4>
-	          	<a href={{link}} target="_blank">{{link}}</a>
+	        <div class="card-content article-content black-text">
+	          	
+	          	<a class='grey-text text-darken-4' href={{link}} target="_blank"><h4 class='headline'>{{title}}</h4></a>
+	          	<p class='grey-text'>{{source}}</p>
+	          	
 	        </div>
 	        <div class="card-action card-stacked">
 	        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
-					<i class='fa {{#if this.favorited}}fa-heart red-text{{else}}fa-heart-o pink-text{{/if}}' aria-hidden="true"></i>
+					<i class='red-text fa {{#if this.favorited}}fa-heart {{else}}fa-heart-o text-accent-3{{/if}}' aria-hidden="true"></i>
 	        	</a>
 			
 	          	<a data-article-id={{id}} class="upvote blue-grey-text"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 	          	<div class="vote-chip chip">{{votes}}</div>
 	          	<a data-article-id={{id}} class='downvote blue-grey-text'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 
-		        <a data-article-id="{{id}}" class='delete black-text'><i class="fa fa-times" aria-hidden="true"></i></a>
+		        <a data-article-id="{{id}}" class='delete orange-text text-darken-2'><i class="fa fa-times" aria-hidden="true"></i></a>
 	        
 	        </div>
 		    
@@ -55,12 +57,12 @@
 		if ($(this).data('favorited')) {
 			$.post("/article/unfavorite/" + $id + "?_method=PUT").done((done)=>{
 				$(this).data('favorited', false);
-				$(this).children("i").toggleClass("fa-heart red-text fa-heart-o pink-text");
+				$(this).children("i").toggleClass("fa-heart fa-heart-o text-accent-3");
 			});
 		} else {
 			$.post("/article/favorite/" + $id + "?_method=PUT").done((done)=>{
 				$(this).data('favorited', true);
-				$(this).children("i").toggleClass("fa-heart red-text fa-heart-o pink-text");
+				$(this).children("i").toggleClass("fa-heart fa-heart-o text-accent-3");
 			});;
 		}
 	});

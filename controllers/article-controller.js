@@ -30,7 +30,7 @@ module.exports = function(app, hbs) {
     router.get("/articles", function(req, res){
 
         //render a page with all the articles, sorted by votes
-        Article.find({}).sort({votes: -1}).exec(function(err, articles) {
+        Article.find({}).sort({votes: -1, dateAdded: -1}).exec(function(err, articles) {
             if(err) {
                 console.log(err);
             } else {
@@ -104,6 +104,14 @@ module.exports = function(app, hbs) {
         });
 
     });
+
+    router.delete("/delete/all", function(req, res){
+
+        Article.deleteMany({}, function(err, data) {
+            res.redirect("/");
+        });
+
+    })
         
     app.use("/", router);
 }

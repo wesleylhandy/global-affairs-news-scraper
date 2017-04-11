@@ -27,6 +27,10 @@ var ArticleSchema = new Schema({
     type: Number,
     default: 0
   },
+  source: {
+    type: String,
+    required:true
+  },
   dateAdded: {
     type: Date,
     default: Date.now
@@ -147,7 +151,7 @@ Article.getFavorites = function() {
   return new Promise((resolve, reject)=>{
     Article.find({
       favorited: true
-    }).sort({votes: -1}).exec(function(err, data){
+    }).sort({votes: -1, dateAdded: -1}).exec(function(err, data){
       if(err) {
         console.log(err);
         reject(err);

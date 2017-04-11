@@ -3,11 +3,13 @@
 	{{#each favorites}}
 	<div class="col s12" id='card{{id}}'>
 
-	    <div class="card horizontal">
+	    <div class="card horizontal grey lighten-5">
 		    
-	        <div class="card-content headline favorite-content">
-	          	<h4>{{title}}</h4>
-	          	<a href={{link}} target="_blank">{{link}}</a>
+	        <div class="card-content favorite-content">
+	          	
+	          	<a class='grey-text text-darken-4' href={{link}} target="_blank"><h4 class='headline'>{{title}}</h4></a>
+	          	<p class='grey-text'>{{source}}</p>
+	          	
 	        </div>
 	        <div class="card-action card-stacked">
 	        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
@@ -18,7 +20,7 @@
 	          	<div class="vote-chip chip">{{votes}}</div>
 	          	<a data-article-id={{id}} class='downvote blue-grey-text'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 
-	        	<a data-article-id="{{id}}" class='view-notes black-text'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+	        	<a data-article-id="{{id}}" class='view-notes indigo-text text-darken-3'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
 	        </div>
 		    
@@ -102,16 +104,16 @@
 				
 				var cardAction = $('<div>').addClass('card-action').appendTo(horizontalCard);
 
-				var viewNote = $('<a>').addClass('view-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('View Note ').appendTo(cardAction);
+				var viewNote = $('<a>').addClass('view-note teal-text text-darken-2').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('View Note ').appendTo(cardAction);
 				var viewIcon = $('<i>').addClass('fa fa-eye').attr('aria-hidden', true).appendTo(viewNote);
 
-				var hideNote = $('<a>').addClass('hide-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
+				var hideNote = $('<a>').addClass('hide-note brown-text text-lighten-2').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
 				var hideIcon = $('<i>').addClass('fa fa-eye-slash').attr('aria-hidden', true).appendTo(hideNote);
 
 				// var updateNote = $('<a>').addClass('update-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Hide Note ').appendTo(cardAction).hide();
 				// var updateIcon = $('<i>').addClass('fa fa-eraser').attr('aria-hidden', true).appendTo(updateNote);
 
-				var deleteNote = $('<a>').addClass('delete-note').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Delete ').appendTo(cardAction);
+				var deleteNote = $('<a>').addClass('delete-note purple-text text-darken-4').attr('data-article-id', $articleId).attr('data-note-id', note._id).text('Delete ').appendTo(cardAction);
 				var deleteIcon = $('<i>').addClass('fa fa-times').attr('aria-hidden', true).appendTo(deleteNote);
 
 				card.appendTo($wrapper);

@@ -44,6 +44,7 @@ module.exports = function(app) {
                         // Add the text and href of every link, and save them as properties of the result object
                         result.title = $(this).find(".title-link__title-text").text();
                         result.link = "http://www.bbc.com" + $(this).parent().attr("href");
+                        result.source = 'BBC World News';
 
                         // Using our Article model, create a new entry
                         // This effectively passes the result object to the entry (and the title and link)
@@ -92,7 +93,7 @@ module.exports = function(app) {
                         // Add the text and href of every link, and save them as properties of the result object
                         result.title = $(this).find("h2").text();
                         result.link = "http://aljazeera.com" + $(this).children("a").attr("href");
-
+                        result.source = "Al-Jazeera: Africa Region News";
                         // Using our Article model, create a new entry
                         // This effectively passes the result object to the entry (and the title and link)
                         var entry = new Article(result);
@@ -140,6 +141,7 @@ module.exports = function(app) {
                         // Add the text and href of every link, and save them as properties of the result object
                         result.title = $(this).find("h4").text();
                         result.link = "http://usa.chinadaily.com.cn/" + $(this).children("a").attr("href");
+                        result.source = "China Daily News: US-China Relations";
 
                         // Using our Article model, create a new entry
                         // This effectively passes the result object to the entry (and the title and link)

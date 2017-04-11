@@ -36,8 +36,13 @@ body {
   background-color: rgba(158, 158, 158, 0.75);
 }
 
+.card {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .article-content, .favorite-content, .note-content {
-  width: 90%;
+  width: 80%;
 }
 
 .card-stacked{
@@ -48,6 +53,21 @@ body {
 .upvote, .downvote, .favorite, .delete, .view-notes {
   margin-left: 1em;
 }
+
+.upvote:hover, .downvote:hover, .favorite:hover, .delete:hover, .view-notes:hover {
+  margin-left: 1em;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+}
+
+.headline:hover {
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+  text-decoration: underline; 
+}
+
+.delete-note:hover, .hide-note:hover, .view-note:hover {
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+}
+
 
 .delete, .view-chip {
   text-align: center;
