@@ -1,9 +1,23 @@
+
 body { 
-  background-color: #F2F6D0 
+  background-color: #F2F6D0;
+  position: relative;
+}
+
+#spinner {
+  position: absolute;
+  top: 120px;
+  width: 30%;
+  left: 35%;
+  z-index: 2;
 }
 
 #main-intro {
   position: relative;
+  background: url('../images/pexels-world-news.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 #main-title {
@@ -23,7 +37,7 @@ body {
 }
 
 .article-content, .favorite-content, .note-content {
-  width: 80%;
+  width: 90%;
 }
 
 .card-stacked{
@@ -31,13 +45,12 @@ body {
   float: right;
 }
 
-.upvote, .downvote, .favorite {
+.upvote, .downvote, .favorite, .delete, .view-notes {
   margin-left: 1em;
 }
 
-.delete-chip, .view-chip {
+.delete, .view-chip {
   text-align: center;
-  padding-right: 0;
 }
 
 .view-note, .hide-note, .delete-note {
@@ -51,4 +64,23 @@ footer.page-footer {
 
 .col.s12 {
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+
+  #main-title {
+
+    position: absolute;
+    top: 20%;
+    width: 95%;
+    margin-left: 2.5%;
+
+  }
+
+  #main-title-background {
+    padding: 10px;
+    border: 2px solid #9e9e9e;
+
+  }
+
 }

@@ -11,16 +11,15 @@
 	        </div>
 	        <div class="card-action card-stacked">
 	        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
-					<i class='fa {{#if this.favorited}}fa-heart{{else}}fa-heart-o{{/if}}' aria-hidden="true"></i>
+					<i class='fa {{#if this.favorited}}fa-heart red-text{{else}}fa-heart-o pink-text{{/if}}' aria-hidden="true"></i>
 	        	</a>
 
-	          	<a data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-	          	<div class="chip vote-chip">{{votes}}</div>
-	          	<a data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+	          	<a data-article-id={{id}} class="upvote blue-grey-text"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+	          	<div class="vote-chip chip">{{votes}}</div>
+	          	<a data-article-id={{id}} class='downvote blue-grey-text'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 
-		        <div class="chip view-chip">
-		        	<a data-article-id="{{id}}" class='view-notes'>Notes&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-		        </div>
+	        	<a data-article-id="{{id}}" class='view-notes black-text'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
 	        </div>
 		    
 	    </div>

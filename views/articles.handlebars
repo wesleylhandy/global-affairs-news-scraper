@@ -11,17 +11,15 @@
 	        </div>
 	        <div class="card-action card-stacked">
 	        	<a data-article-id={{id}} class="favorite" data-favorited="{{favorited}}">
-					<i class='fa {{#if this.favorited}}fa-heart{{else}}fa-heart-o{{/if}}' aria-hidden="true"></i>
+					<i class='fa {{#if this.favorited}}fa-heart red-text{{else}}fa-heart-o pink-text{{/if}}' aria-hidden="true"></i>
 	        	</a>
 			
-	          	<a data-article-id={{id}} class="upvote"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-	          	<div class="chip vote-chip">{{votes}}</div>
-	          	<a data-article-id={{id}} class='downvote'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+	          	<a data-article-id={{id}} class="upvote blue-grey-text"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+	          	<div class="vote-chip chip">{{votes}}</div>
+	          	<a data-article-id={{id}} class='downvote blue-grey-text'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 
-		        
-		        <div class="chip delete-chip">
-		        	<a data-article-id="{{id}}" class='delete'>Delete&nbsp;<i class="fa fa-times" aria-hidden="true"></i></a>
-		        </div>
+		        <a data-article-id="{{id}}" class='delete black-text'><i class="fa fa-times" aria-hidden="true"></i></a>
+	        
 	        </div>
 		    
 	    </div>
@@ -57,12 +55,12 @@
 		if ($(this).data('favorited')) {
 			$.post("/article/unfavorite/" + $id + "?_method=PUT").done((done)=>{
 				$(this).data('favorited', false);
-				$(this).children("i").toggleClass("fa-heart fa-heart-o");
+				$(this).children("i").toggleClass("fa-heart red-text fa-heart-o pink-text");
 			});
 		} else {
 			$.post("/article/favorite/" + $id + "?_method=PUT").done((done)=>{
 				$(this).data('favorited', true);
-				$(this).children("i").toggleClass("fa-heart fa-heart-o");
+				$(this).children("i").toggleClass("fa-heart red-text fa-heart-o pink-text");
 			});;
 		}
 	});

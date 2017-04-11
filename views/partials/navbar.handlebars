@@ -1,21 +1,26 @@
 <div class="navbar-fixed">
-  <nav class="grey darken-2">
-    <div class="nav-wrapper">
-      <ul class="left">
-      	<li class='active'><a href="/">Global Affairs&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
-      	<li><a href="/articles">Articles&nbsp;<i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
-        <li><a href="/favorites">Favorites&nbsp;<i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-        <li><a id="scrape" class="waves-effect waves-light btn grey darken-4">Scrape New Articles</a></li>
-      </ul>
-    </div>
-  </nav>
+  	<nav class="grey darken-2">
+	    <div class="nav-wrapper">
+
+	      	<ul class="left">
+	      		<li class='active'><a href="/"><span class='hide-on-med-and-down'>Global Affairs&nbsp;</span><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+	      		<li><a href="/articles"><span class='hide-on-med-and-down'>Articles&nbsp;</span><i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
+	        	<li><a href="/favorites"><span class='hide-on-med-and-down'>Favorites&nbsp;</span><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+	        	<li><a id="scrape" class="waves-effect waves-light btn grey darken-4">Scrape<span class='hide-on-med-and-down'>&nbsp;New Articles</span></a></li>
+	      	</ul>
+	        
+	    </div>
+  	</nav>
 </div>
 
 <script type="text/javascript">
 	
 	$('#scrape').click(function(){
 
+		$('#spinner').addClass('active');
+
 		$.get("/scrape").done((response)=>{
+			$('#spinner').removeClass('active');
 			if(response) {
 				Materialize.toast(`You scraped ${response} articles.`, 3000, 'rounded', function(){
 					window.location.href = "/articles";
