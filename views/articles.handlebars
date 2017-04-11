@@ -70,21 +70,23 @@
 	$(".upvote").click(function(){
 
 		$id = $(this).data('article-id');
+		$votes = parseInt($('#card'+$id).find('.vote-chip').text());
 
 		$.post('/article/upvote/' + $id + '?_method=PUT').done((done)=>{
-				window.location.href = "/articles";
+				$votes++;
+				$('#card'+$id).find('.vote-chip').text($votes);
 			});;
-
 	});
 
 	$(".downvote").click(function(){
 
 		$id = $(this).data('article-id');
+		$votes = parseInt($('#card'+$id).find('.vote-chip').text());
 
 		$.post('/article/downvote/' + $id + '?_method=PUT').done((done)=>{
-				window.location.href = "/articles";
+				$votes--;
+				$('#card'+$id).find('.vote-chip').text($votes);
 			});
-
 	});
 
 	$(".delete").click(function(){

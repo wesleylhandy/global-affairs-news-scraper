@@ -134,22 +134,24 @@
 
 	$(".upvote").click(function(){
 
-		var $id = $(this).data('article-id');
+		$id = $(this).data('article-id');
+		$votes = parseInt($('#card'+$id).find('.vote-chip').text());
 
 		$.post('/article/upvote/' + $id + '?_method=PUT').done((done)=>{
-				window.location.href = "/favorites";
+				$votes++;
+				$('#card'+$id).find('.vote-chip').text($votes);
 			});;
-
 	});
 
 	$(".downvote").click(function(){
 
-		var $id = $(this).data('article-id');
+		$id = $(this).data('article-id');
+		$votes = parseInt($('#card'+$id).find('.vote-chip').text());
 
 		$.post('/article/downvote/' + $id + '?_method=PUT').done((done)=>{
-				window.location.href = "/favorites";
-			});;
-
+				$votes--;
+				$('#card'+$id).find('.vote-chip').text($votes);
+			});
 	});
 
 	$('.view-notes').click(function(){
